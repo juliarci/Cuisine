@@ -14,4 +14,12 @@ public class MySpinner extends JSpinner {
 		this(model);
 
 	}
+
+	public int MySpinnerValue() {
+		int value =(Integer) this.getValue();
+		System.out.println(value);
+		return value;
+	}
+
+
 }

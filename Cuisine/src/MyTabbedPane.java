@@ -8,8 +8,8 @@ public class MyTabbedPane extends JTabbedPane {
 	}
 
 	private void setUpAndDisplay() {
-		this.add("Entrées", new MyFinalPanel());
-		this.add("Plats", new MyFinalPanel());
-		this.add("Desserts",new MyFinalPanel());
+		this.add("Entrées", new MyFinalPanel("Nom de l'entrée :", "Nombre d'entrées différentes :"));
+		this.add("Plats", new MyFinalPanel("Nom du plat :", null));
+		this.add("Desserts", new MyFinalPanel("Nom du dessert :", "Nombre de desserts différents :"));
 	}
 }

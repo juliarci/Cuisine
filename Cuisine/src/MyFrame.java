@@ -1,6 +1,13 @@
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.FlowLayout;
+import java.awt.Font;
+import java.awt.TextField;
+
+import javax.swing.Box;
+import javax.swing.BoxLayout;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 public class MyFrame extends JFrame {
@@ -31,10 +38,15 @@ public class MyFrame extends JFrame {
 	private void setUpAndDisplay() {
 
 		this.getContentPane().setLayout(new BorderLayout());
+		Box b = new Box(BoxLayout.Y_AXIS);
 		MyTabbedPane mtp1 = new MyTabbedPane();
-		MyPanel mp1 = new MyPanel();
-		this.add(mtp1, BorderLayout.CENTER);
-
+		JLabel label = new JLabel("Création du menu");
+		label.setFont(new Font("Serif", Font.BOLD,25));
+		b.add(label);
+		b.add(mtp1);
+		MyButton btn=new MyButton("Valider mon menu");
+		b.add(btn);
+		this.add(b);
 		this.setSize(this.width, this.height);
 		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		this.setVisible(true);

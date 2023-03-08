@@ -6,14 +6,14 @@ public class MyBoxLayout extends Box {
 
 	public MyBoxLayout() {
 		super(BoxLayout.Y_AXIS);
-		this.setUpAndDisplay();
+		/**this.setUpAndDisplay();**/
 	}
 
-	private void setUpAndDisplay() {
+	/**private void setUpAndDisplay() {
 		this.add(new MyBigPanel());
 		this.add(new MyBigPanel());
 		this.add(new MyBigPanel());
 
-	}
+	}**/
 
 }

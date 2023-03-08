@@ -1,23 +1,27 @@
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
 
-public class MyGridLayout extends GridLayout{
+import javax.swing.JPanel;
 
-	public MyGridLayout() {
-		super();
-		this.setUpAndDisplay();
-		}
+public class MyGridLayout extends JPanel {
 
-		private void setUpAndDisplay() {
-			this.add(new MyPanel());
-			this.add(new MyPanel());
-			this.add(new MyPanel());
+	private int ligne;
 
+	public MyGridLayout(int ligne, int colonne, int espace1, int espace2, String text) {
+		GridLayout grid = new GridLayout(ligne, colonne, espace1, espace2);
+		this.ligne=ligne;
+		this.setLayout(grid);
+		this.setUpAndDisplay(text);
 	}
 
-		private void add(MyPanel myPanel) {
-			// TODO Auto-generated method stub
-			
+	private void setUpAndDisplay(String text) {
+		for (int i = 0; i < this.ligne; i++) {
+			this.add(new MyBigPanel(text));
 		}
+		
+		}
+
 	
+
+
 }
