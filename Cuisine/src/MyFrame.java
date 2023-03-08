@@ -45,6 +45,9 @@ public class MyFrame extends JFrame {
 		b.add(label);
 		b.add(mtp1);
 		MyButton btn=new MyButton("Valider mon menu");
+		btn.addActionListener(e -> {
+			
+		});
 		b.add(btn);
 		this.add(b);
 		this.setSize(this.width, this.height);
