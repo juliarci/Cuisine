@@ -5,13 +5,20 @@ import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 import javax.swing.SpinnerModel;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.border.Border;
 
 public class MyPanel extends JPanel {
+protected MyTextField mtf;
+protected MySpinner ms;
+
 
 	public MyPanel(String text) {
+		this.mtf=new MyTextField();
+		SpinnerModel model = new SpinnerNumberModel(0, 0, null, 1);
+		this.ms=new MySpinner(model);
 		this.setUpAndDisplay(text);
 	}
 
@@ -23,9 +30,6 @@ public class MyPanel extends JPanel {
 		JLabel jl1 = new JLabel(text);
 		JLabel jl2 = new JLabel(" Quantité :");
 		b.setPreferredSize(new Dimension(150, 40));
-		MyTextField mtf = new MyTextField();
-		SpinnerModel model = new SpinnerNumberModel(0, 0, null, 1);
-		MySpinner ms = new MySpinner(model);
 		jl1.setAlignmentX(LEFT_ALIGNMENT);
 		b.add(jl1);
 		b2.add(mtf);
@@ -36,4 +40,19 @@ public class MyPanel extends JPanel {
 		b3.add(b2);
 		this.add(b3);
 	}
+
+	public MyTextField getMtf() {
+		return mtf;
+	}
+
+	public void setMtf(MyTextField mtf) {
+		this.mtf = mtf;
+	}
+
+	public MySpinner getMs() {
+		return ms;
+	}
+
+	
+
 }

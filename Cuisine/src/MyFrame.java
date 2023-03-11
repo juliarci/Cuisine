@@ -3,12 +3,18 @@ import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.TextField;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 
 public class MyFrame extends JFrame {
 	private int height;
@@ -47,6 +53,24 @@ public class MyFrame extends JFrame {
 		MyButton btn=new MyButton("Valider mon menu");
 		btn.addActionListener(e -> {
 			
+			JSONObject menu = new JSONObject();
+		       
+
+		        JSONArray list = new JSONArray();
+		        list.add("mbp.getSaisie1()");
+		        list.add("this.getSaisie2()");
+		       
+		        menu.put("Starters", list);
+
+		        try (FileWriter file = new FileWriter("//Users//Julia//Downloads//menu.json")){
+		        	file.write(menu.toJSONString());
+		        } catch (IOException e1) {
+		            e1.printStackTrace();
+		        }
+
+		        System.out.print(menu);
+
+
 		});
 		b.add(btn);
 		this.add(b);
@@ -54,4 +78,5 @@ public class MyFrame extends JFrame {
 		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		this.setVisible(true);
 	}
+
 }

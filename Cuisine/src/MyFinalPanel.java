@@ -11,15 +11,17 @@ import javax.swing.SpinnerModel;
 import javax.swing.SpinnerNumberModel;
 
 public class MyFinalPanel extends JPanel {
+protected MyGridLayout mgl;
+protected MyGridLayout mgl1;
 
 	public MyFinalPanel(String text, String text2) {
+		this.mgl=new MyGridLayout(3,0,5,5,text);
+		this.mgl1=new MyGridLayout(4,0,5,5,text);
 		this.setUpAndDisplay(text, text2);
 	}
 
 	private void setUpAndDisplay(String text, String text2) {
 		this.setLayout(new BorderLayout());
-		MyGridLayout mgl = new MyGridLayout(3, 0, 5, 5, text);
-		MyGridLayout mgl1= new MyGridLayout(4, 0, 5, 5, text);
 		if (text == "Nom du plat :") {
 			this.add(mgl);
 			Box b = new Box(BoxLayout.X_AXIS);
@@ -69,4 +71,15 @@ public class MyFinalPanel extends JPanel {
 		}
 	}
 
+	public MyBigPanel getMbp2() {
+		return mgl.getMbp();
+	}
+
+
+	public MyBigPanel getMbpG4() {
+		return mgl1.getMbp();
+	}
+	public int getLigne() {
+		return 0;
+	}
 }
