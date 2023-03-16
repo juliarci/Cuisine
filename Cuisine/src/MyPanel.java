@@ -1,44 +1,59 @@
-import java.awt.Color;
 import java.awt.Dimension;
-import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
 import javax.swing.SpinnerModel;
 import javax.swing.SpinnerNumberModel;
-import javax.swing.border.Border;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
+import javax.swing.text.Document;
 
-public class MyPanel extends JPanel {
-protected MyTextField mtf;
-protected MySpinner ms;
-
+public class MyPanel extends JPanel implements ChangeListener, DocumentListener {
+	private MyTextField mtf;
+	private MySpinner ms;
+	private String saisie1;
+	private int saisie2;
+	private Box b, b2;
+	private JPanel jp;
+	private JLabel jl1, jl2;
+	private Document doc;
 
 	public MyPanel(String text) {
-		this.mtf=new MyTextField();
+		mtf = new MyTextField();
+		doc = mtf.getDocument();
 		SpinnerModel model = new SpinnerNumberModel(0, 0, null, 1);
-		this.ms=new MySpinner(model);
+		ms = new MySpinner(model);
+		b = new Box(BoxLayout.Y_AXIS);
+		b2 = new Box(BoxLayout.Y_AXIS);
+		jp = new JPanel();
+		jl1 = new JLabel(text);
+		jl2 = new JLabel(" Quantité :");
 		this.setUpAndDisplay(text);
 	}
 
 	private void setUpAndDisplay(String text) {
-		Border lineborder = BorderFactory.createLineBorder(Color.gray, 1);
-		Box b = new Box(BoxLayout.Y_AXIS);
-		Box b2 = new Box(BoxLayout.Y_AXIS);
-		JPanel b3 = new JPanel();
-		JLabel jl1 = new JLabel(text);
-		JLabel jl2 = new JLabel(" Quantité :");
 		b.setPreferredSize(new Dimension(150, 40));
 		jl1.setAlignmentX(LEFT_ALIGNMENT);
 		b.add(jl1);
 		b2.add(mtf);
+		doc.addDocumentListener(this);
 		b.add(Box.createVerticalStrut(5));
 		b.add(jl2);
 		b2.add(ms);
-		b3.add(b);
-		b3.add(b2);
-		this.add(b3);
+		ms.addChangeListener(this);
+		jp.add(b);
+		jp.add(b2);
+		this.add(jp);
+	}
+
+	public void stateChanged(ChangeEvent e) {
+		Object source = e.getSource();
+		if (source == ms)
+			saisie2 = ms.MySpinnerValue();
+
 	}
 
 	public MyTextField getMtf() {
@@ -53,6 +68,38 @@ protected MySpinner ms;
 		return ms;
 	}
 
-	
+	public String getSaisie1() {
+		return saisie1;
+	}
+
+	public void setSaisie1(String saisie1) {
+		this.saisie1 = saisie1;
+	}
+
+	public int getSaisie2() {
+		return saisie2;
+	}
+
+	public void setSaisie2(int saisie2) {
+		this.saisie2 = saisie2;
+	}
+
+	@Override
+	public void insertUpdate(DocumentEvent e) {
+		Object source = e.getDocument();
+		if (source == doc)
+			saisie1 = mtf.getText();
+
+	}
+
+	@Override
+	public void removeUpdate(DocumentEvent e) {
+		// TODO Auto-generated method stub
+
+	}
+
+	public void changedUpdate(DocumentEvent evt) {
+
+	}
 
 }

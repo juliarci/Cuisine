@@ -1,48 +1,37 @@
 import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JPanel;
 import javax.swing.SpinnerNumberModel;
 
-public class MyBigPanel extends JPanel {
-	protected String saisie1;
-	protected int saisie2;
-	protected int id;
+public class MyBigPanel extends JPanel implements ActionListener {
+	private MyPanel mp;
+	private int id;
+	private MyBorder arcborder;
+	private Box b, b2;
+	private JPanel jp1, jp2, jp3;
+	private MyButton btnv2;
 
 	public MyBigPanel(String text) {
-		this.saisie1 = new String();
-		this.saisie2 = 0;
-		this.id = 0;
+		id = 0;
+		mp = new MyPanel(text);
+		arcborder = new MyBorder();
+		b = new Box(BoxLayout.Y_AXIS);
+		b2 = new Box(BoxLayout.X_AXIS);
+		jp1 = new JPanel();
+		jp2 = new JPanel();
+		jp3 = new JPanel();
+		btnv2 = new MyButton("Supprimer");
 		this.setUpAndDisplay(text);
 	}
 
 	private void setUpAndDisplay(String text) {
-		MyBorder arcborder = new MyBorder();
-		MyPanel mp = new MyPanel(text);
-		Box b = new Box(BoxLayout.Y_AXIS);
-		Box b2 = new Box(BoxLayout.X_AXIS);
-		JPanel jp1 = new JPanel();
-		JPanel jp2 = new JPanel();
-		JPanel jp3 = new JPanel();
 		jp2.setPreferredSize(new Dimension(420, 12));
 		jp3.setPreferredSize(new Dimension(420, 12));
-		MyButton btnv2 = new MyButton("Supprimer");
 		jp1.add(btnv2);
-		btnv2.addActionListener(e1 -> {
-			MyTextField mtf = mp.getMtf();
-			mtf.setText("");
-			MySpinner ms = mp.getMs();
-			ms.setModel(new SpinnerNumberModel(0, 0, null, 1));
-		});
-		MyButton btnv = new MyButton("OK");
-		jp1.add(btnv);
-		btnv.addActionListener(e -> {
-			MyTextField mtf = mp.getMtf();
-			saisie1 = mtf.MyTextFieldValue();
-			MySpinner ms = mp.getMs();
-			saisie2 = ms.MySpinnerValue();
-
-		});
+		btnv2.addActionListener(this);
 		b.add(mp);
 		b2.add(jp2);
 		b2.add(jp1);
@@ -51,21 +40,14 @@ public class MyBigPanel extends JPanel {
 		this.add(b);
 		this.setBorder(arcborder);
 	}
-
-	public String getSaisie1() {
-		return saisie1;
-	}
-
-	public void setSaisie1(String saisie1) {
-		this.saisie1 = saisie1;
-	}
-
-	public int getSaisie2() {
-		return saisie2;
-	}
-
-	public void setSaisie2(int saisie2) {
-		this.saisie2 = saisie2;
+	public void actionPerformed(ActionEvent evt) {
+		Object source = evt.getSource();
+		if (source == btnv2) {
+			MyTextField mtf = mp.getMtf();
+			mtf.setText("");
+			MySpinner ms = mp.getMs();
+			ms.setModel(new SpinnerNumberModel(0, 0, null, 1));
+		}
 	}
 
 	public int getId() {
@@ -74,6 +56,10 @@ public class MyBigPanel extends JPanel {
 
 	public void setId(int id) {
 		this.id = id;
+	}
+
+	public MyPanel getMp() {
+		return mp;
 	}
 
 }
