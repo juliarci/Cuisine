@@ -18,6 +18,7 @@ import javax.swing.JPanel;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
+import org.json.simple.parser.ParseException;
 
 public class MyFrame extends JFrame {
 	private int height;
@@ -27,20 +28,22 @@ public class MyFrame extends JFrame {
 	private JLabel label;
 	private Box b;
 	private MyButton btn;
+	private LectureCommande lect;
+	MyActionListener action;
 
-	public MyFrame() {
+	public MyFrame() throws ParseException {
 		this("Cuisine", 700, 1400, Color.orange);
 	}
 
-	public MyFrame(String title) {
+	public MyFrame(String title) throws ParseException {
 		this(title, 200, 200, Color.orange);
 	}
 
-	public MyFrame(int width, int height) {
+	public MyFrame(int width, int height) throws ParseException {
 		this("Cuisine", width, height, Color.orange);
 	}
 
-	public MyFrame(String title, int width, int height, Color buttonColor) {
+	public MyFrame(String title, int width, int height, Color buttonColor) throws ParseException {
 		super(title);
 		this.width = width;
 		this.height = height;
@@ -49,17 +52,23 @@ public class MyFrame extends JFrame {
 		label = new JLabel("Création du menu");
 		btn = new MyButton("Valider mon menu");
 		b = new Box(BoxLayout.Y_AXIS);
+		lect = new LectureCommande("order_1680701681311.json");
+		action = new MyActionListener(mytabbed);
 		this.setUpAndDisplay();
 
 	}
 
-	private void setUpAndDisplay() {
+	private void setUpAndDisplay() throws ParseException {
 
 		this.getContentPane().setLayout(new BorderLayout());
-		label.setFont(new Font("Serif", Font.BOLD, 25));
+		label.setFont(new Font("Serif", Font.ITALIC, 25));
 		b.add(label);
 		b.add(mytabbed);
-		btn.addActionListener(new MyActionListener(mytabbed));
+		btn.addActionListener(e -> {
+			action = new MyActionListener(mytabbed);
+			action.actionPerformed(e);
+			/**action.ControleQuantity("order_1680701681311.json");**/
+		});
 		b.add(btn);
 		this.add(b);
 		this.setSize(this.width, this.height);
@@ -67,6 +76,5 @@ public class MyFrame extends JFrame {
 		this.setVisible(true);
 	}
 
-	
 
 }
