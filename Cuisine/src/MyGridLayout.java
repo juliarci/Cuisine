@@ -17,9 +17,9 @@ public class MyGridLayout extends JPanel {
 
 	private void setUpAndDisplay(String text) {
 		for (int i = 0; i < this.ligne; i++) {
-			mbp[i] = new MyBigPanel(text);
+			mbp[i] = new MyBigPanel(text); // Ajout des panels dans la grille
 			this.add(mbp[i]);
-			mbp[i].setId(i + 1);
+			mbp[i].setId(i + 1);// Création des identifiants des plats
 		}
 	}
 

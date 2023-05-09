@@ -28,11 +28,11 @@ public class LectureCommande {
 	}
 
 	private String IdCommande() throws ParseException {
-		JSONParser jsonP = new JSONParser();
+		JSONParser jsonP = new JSONParser(); // Permet de parcourir le JSON
 		JSONObject jsonO;
 		try {
-			jsonO = (JSONObject) jsonP.parse(new FileReader(file));
-			idcom = (String) jsonO.get("id");
+			jsonO = (JSONObject) jsonP.parse(new FileReader(file)); // Création de l'objet JSON à partir du fichier
+			idcom = (String) jsonO.get("id"); // Récupération de l'id commande
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -54,16 +54,14 @@ public class LectureCommande {
 		try {
 			jsonO = (JSONObject) jsonP.parse(new FileReader(file));
 
-			JSONArray starters = (JSONArray) jsonO.get("starters");
+			JSONArray starters = (JSONArray) jsonO.get("starters");// Permet positionnement au niveau des starters
 
-			Iterator<JSONObject> iteratorstart = starters.iterator();
+			Iterator<JSONObject> iteratorstart = starters.iterator();// Permet de parcourir la JSONArray
 			while (iteratorstart.hasNext()) {
 				JSONObject jsonos = iteratorstart.next();
 				Long id2 = (Long) jsonos.get("id");
 				int qty = ((Long) jsonos.get("qty")).intValue();
-				System.out.println(id2);
-				System.out.println(qty);
-				valmenu val = new valmenu(id2, qty);
+				valmenu val = new valmenu(id2, qty); // Création d'une entrée
 				entreq.add(val);
 			}
 		} catch (FileNotFoundException e) {
@@ -93,8 +91,6 @@ public class LectureCommande {
 				JSONObject jsonos = iteratorplat.next();
 				Long id2 = (Long) jsonos.get("id");
 				int qty = ((Long) jsonos.get("qty")).intValue();
-				System.out.println(id2);
-				System.out.println(qty);
 				valmenu val = new valmenu(id2, qty);
 				platsq.add(val);
 			}
@@ -125,8 +121,6 @@ public class LectureCommande {
 				JSONObject jsonos = iteratordess.next();
 				Long id2 = (Long) jsonos.get("id");
 				int qty = ((Long) jsonos.get("qty")).intValue();
-				System.out.println(id2);
-				System.out.println(qty);
 				valmenu val = new valmenu(id2, qty);
 				dessertsq.add(val);
 			}

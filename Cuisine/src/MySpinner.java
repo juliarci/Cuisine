@@ -4,16 +4,13 @@ import javax.swing.SpinnerNumberModel;
 
 public class MySpinner extends JSpinner {
 
-
 	public MySpinner(SpinnerModel model) {
 		super(model);
 	}
 
-
 	public int MySpinnerValue() {
-		int value =(Integer) this.getValue();
+		int value = (Integer) this.getValue(); // Récupération d'une valeur entière
 		return value;
 	}
-
 
 }

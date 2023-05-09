@@ -12,12 +12,10 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
 public class MyFinalPanel extends JPanel implements ChangeListener {
-	private MyGridLayout mgl;
-	private MyGridLayout mgl1;
+	private MyGridLayout mgl, mgl1;
 	private MySpinner ms;
 	private Box b, b2;
 	private JPanel jp1, jp2, jp3, jp4;
-	private MyButton btn;
 
 	public MyFinalPanel(String text, String text2) {
 		mgl = new MyGridLayout(3, 0, 5, 5, text);
@@ -30,14 +28,13 @@ public class MyFinalPanel extends JPanel implements ChangeListener {
 		jp2 = new JPanel();
 		jp3 = new JPanel();
 		jp4 = new JPanel();
-		btn = new MyButton(">");
 		this.setUpAndDisplay(text, text2);
 	}
 
 	private void setUpAndDisplay(String text, String text2) {
 		this.setLayout(new BorderLayout());
-		if (text.equals("Nom du plat :")) {
-			this.add(mgl);
+		if (text.equals("Nom du plat :")) { // Choix du panel correspondant aux plats
+			this.add(mgl); // Ajout de la grille
 			jp3.setPreferredSize(new Dimension(600, 12));
 			jp1.add(new JLabel(text2));
 			b.add(jp3);
@@ -45,12 +42,12 @@ public class MyFinalPanel extends JPanel implements ChangeListener {
 			this.add(jp2, BorderLayout.SOUTH);
 
 		} else {
-			this.add(mgl);
+			this.add(mgl); // Ajout d'une grille de trois
 			jp3.setPreferredSize(new Dimension(600, 12));
 			jp4.setPreferredSize(new Dimension(430, 12));
-			b2.add(new JLabel(text2));
+			b2.add(new JLabel(text2));// Ajout texte
 			b2.add(ms);
-			ms.addChangeListener(this);
+			ms.addChangeListener(this); // Ecoute du spinner
 			b2.add(jp4);
 			jp1.add(b2);
 			b.add(jp3);
@@ -63,7 +60,7 @@ public class MyFinalPanel extends JPanel implements ChangeListener {
 
 	public void stateChanged(ChangeEvent e) {
 		Object source = e.getSource();
-		if (source == ms) {
+		if (source == ms) { // Permet le passage d'une grille à 3 lignes à 4 lignes
 			if (ms.MySpinnerValue() == 3) {
 				this.remove(mgl1);
 				this.add(mgl, BorderLayout.CENTER);
@@ -71,7 +68,7 @@ public class MyFinalPanel extends JPanel implements ChangeListener {
 				this.remove(mgl);
 				this.add(mgl1, BorderLayout.CENTER);
 			}
-			revalidate();
+			revalidate(); // Permet de revalider l'affichage
 			repaint();
 		}
 	}

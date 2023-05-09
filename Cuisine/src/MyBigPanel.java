@@ -31,22 +31,23 @@ public class MyBigPanel extends JPanel implements ActionListener {
 		jp2.setPreferredSize(new Dimension(420, 12));
 		jp3.setPreferredSize(new Dimension(420, 12));
 		jp1.add(btnv2);
-		btnv2.addActionListener(this);
+		btnv2.addActionListener(this); // Gestion des actions sur le bouton
 		b.add(mp);
 		b2.add(jp2);
 		b2.add(jp1);
 		b.add(b2);
 		this.add(jp3);
 		this.add(b);
-		this.setBorder(arcborder);
+		this.setBorder(arcborder);// Ajout des bordures arrondies
 	}
+
 	public void actionPerformed(ActionEvent evt) {
 		Object source = evt.getSource();
-		if (source == btnv2) {
+		if (source == btnv2) { // Gestion des actions sur le bouton supprimer
 			MyTextField mtf = mp.getMtf();
-			mtf.setText("");
+			mtf.setText("");// Remse à zéro du texte
 			MySpinner ms = mp.getMs();
-			ms.setModel(new SpinnerNumberModel(0, 0, null, 1));
+			ms.setModel(new SpinnerNumberModel(0, 0, null, 1));// Remise à zéro du spinner
 		}
 	}
 

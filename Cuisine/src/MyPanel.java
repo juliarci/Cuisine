@@ -52,7 +52,7 @@ public class MyPanel extends JPanel implements ChangeListener, DocumentListener 
 	public void stateChanged(ChangeEvent e) {
 		Object source = e.getSource();
 		if (source == ms)
-			saisie2 = ms.MySpinnerValue();
+			saisie2 = ms.MySpinnerValue(); // Récupération de la quantité
 
 	}
 
@@ -88,7 +88,7 @@ public class MyPanel extends JPanel implements ChangeListener, DocumentListener 
 	public void insertUpdate(DocumentEvent e) {
 		Object source = e.getDocument();
 		if (source == doc)
-			saisie1 = mtf.getText();
+			saisie1 = mtf.getText(); // Récupération de la description
 
 	}
 
