@@ -45,7 +45,7 @@ public class MyFrame extends JFrame {
 		btn1 = new MyButton("Ajouter une nouvelle commande");
 		b = new Box(BoxLayout.Y_AXIS);
 		b1 = new Box(BoxLayout.X_AXIS);
-		new LectureCommande("order_1683645537301.json");
+		new LectureCommande("order_1683710112435.json");
 		action = new MyActionListener(mytabbed);
 		this.setUpAndDisplay();
 
@@ -64,7 +64,8 @@ public class MyFrame extends JFrame {
 		});
 		// Ecoute des actions du bouton commande
 		btn1.addActionListener(e1 -> {
-			action.ControleQuantity("order_1683645537301.json");
+			action.ControleQuantity("order_1683710112435.json");
+
 		});
 		b1.add(btn);
 		b1.add(btn1);

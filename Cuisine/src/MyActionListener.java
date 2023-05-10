@@ -145,14 +145,7 @@ public class MyActionListener implements ActionListener {
 				long id = idint;
 				valmenu val = new valmenu(id, mbp1[i2].getMp().getSaisie1(), mbp1[i2].getMp().getSaisie2());
 				dessertsm.add(val);
-				if (mbp[i2].getMp().getSaisie1() == null) {
-					throw new ArithmeticException("Il est nécessaire de donner une description au dessert");
-				}
-				if (mbp[i2].getMp().getSaisie2() == 0) {
-					throw new ArithmeticException("Il est impossible de donner une quantité nulle au dessert");
-
-				}
-			}
+						}
 
 		}
 		// Ajout des trois listes de plats dans le JSON
@@ -177,7 +170,7 @@ public class MyActionListener implements ActionListener {
 				if (val.getId() == val2.getId()) { // Comparaison des identifiants
 					int qty = (val.getQty() - val2.getQty());
 					val.setQty(qty); // Modification de la quantité
-					if (qty <= 0) { // Exception si quantité négative
+					if (qty < 0) { // Exception si quantité négative
 						throw new ArithmeticException("Il ne reste pas suffisamment d'entrée : " + val.getDesc()
 								+ " pour réaliser la commande numéro : " + cde.getIdcom());
 					} else {
@@ -191,7 +184,7 @@ public class MyActionListener implements ActionListener {
 				if (val.getId() == val2.getId()) {
 					int qty = (val.getQty() - val2.getQty());
 					val.setQty(qty);
-					if (qty <= 0) {
+					if (qty < 0) {
 						throw new ArithmeticException("Il ne reste pas suffisamment de plat : " + val.getDesc()
 								+ " pour réaliser la commande numéro : " + cde.getIdcom());
 					} else {
@@ -205,7 +198,7 @@ public class MyActionListener implements ActionListener {
 				if (val.getId() == val2.getId()) {
 					int qty = (val.getQty() - val2.getQty());
 					val.setQty(qty);
-					if (qty <= 0) {
+					if (qty < 0) {
 						throw new ArithmeticException("Il ne reste pas suffisamment de desserts : " + val.getDesc()
 								+ " pour réaliser la commande numéro : " + cde.getIdcom());
 					} else {
